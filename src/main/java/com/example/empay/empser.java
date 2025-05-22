@@ -10,14 +10,14 @@ import java.util.Optional;
 public class empser {
 
     @Autowired
-    private EmpRepository repository; 
+    private EmpRepository repository;
 
     public List<empdata> empinfo() {
-        return repository.findAll();  
+        return repository.findAll();
     }
 
     public String empid(int id) {
-        Optional<empdata> data = repository.findById(id); 
+        Optional<empdata> data = repository.findById(id);
         if (data.isPresent()) {
             empdata emp = data.get();
             return emp.getId() + " " + emp.getName() + " " + emp.getSal();
@@ -25,21 +25,24 @@ public class empser {
         return "Employee not found!";
     }
 
-    public void addid(empdata newid) {
-        repository.save(newid);  
+    public void addid(EmpDTO dto) {
+        empdata emp = new empdata();
+        emp.setName(dto.getName());
+        emp.setSal(dto.getSal());
+        repository.save(emp);
     }
 
-    public void updatid(int id, empdata upid) {
-        Optional<empdata> existingEmp = repository.findById(id);  
+    public void updatid(int id, EmpDTO dto) {
+        Optional<empdata> existingEmp = repository.findById(id);
         if (existingEmp.isPresent()) {
             empdata emp = existingEmp.get();
-            emp.setName(upid.getName());
-            emp.setSal(upid.getSal());
-            repository.save(emp);  
+            emp.setName(dto.getName());
+            emp.setSal(dto.getSal());
+            repository.save(emp);
         }
     }
 
     public void deleteid(int id) {
-        repository.deleteById(id); 
+        repository.deleteById(id);
     }
 }
