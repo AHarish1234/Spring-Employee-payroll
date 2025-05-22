@@ -22,12 +22,12 @@ public class empco {
     }
 
     @PostMapping("/data/create")
-    public void addid(@RequestBody newid) {
+    public void addid(@RequestBody EmpDTO newid) {
         service.addid(newid);
     }
 
     @PutMapping("/data/update/{id}")
-    public String updateid(@PathVariable int id, @RequestBody upid) {
+    public String updateid(@PathVariable int id, @RequestBody EmpDTO upid) {
         service.updatid(id, upid);
         return "Employee with ID " + id + " updated.";
     }
