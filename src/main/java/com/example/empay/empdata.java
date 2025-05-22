@@ -56,8 +56,5 @@ public class empdata {
                 ", sal=" + sal +
                 '}';
     }
-    public empdata(EmpDTO dto) {
-        this.name = dto.getName();
-        this.sal = dto.getSal();
-    }
+    
 }
